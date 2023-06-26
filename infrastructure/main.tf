@@ -5,12 +5,14 @@ provider "aws" {
 }
 
 resource "aws_instance" "web_instance" {
-  ami           = "ami-xxxxxxxx"  # Укажите желаемый AMI ID
+  ami           = "ami-0b2ac948e23c57071"  # Укажите желаемый AMI ID
   instance_type = "t2.micro"      # Укажите желаемый тип инстанса
   vpc_security_group_ids = [aws_security_group.my_webserver.id]
   tags = {
     Name = "WebServer"
   }
+
+}
 resource "aws_security_group" "my_webserver" {
   name        = "WebServer Security Group"
   description = "WebServer"
@@ -43,4 +45,3 @@ resource "aws_security_group" "my_webserver" {
       "sudo systemctl enable httpd"
     ]
   }
-}
