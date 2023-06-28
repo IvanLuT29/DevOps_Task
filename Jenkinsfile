@@ -5,7 +5,7 @@ pipeline {
     stage('Checkout') {
       steps {
         // Клонирование репозитория
-        git 'https://github.com/IvanLuT29/website_pipeline.git'
+        git clone 'https://github.com/IvanLuT29/website_pipeline.git'
       }
     }
 
