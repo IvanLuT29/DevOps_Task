@@ -3,11 +3,26 @@ pipeline {
 
   stages {
     stage('Checkout') {
-      steps {
-        // Клонирование репозитория
-        git clone 'https://github.com/IvanLuT29/website_pipeline.git'
-      }
-    }
+      checkout([
+            $class: 'GitSCM',
+            branches: [[name: 'main']],
+            extensions: [
+                  [
+                        $class: 'CloneOption',
+                        depth: 50,
+                        noTags: true,
+                        shallow: true
+                  ]
+            ],
+            userRemoteConfigs: [
+                  [
+                        url: https://github.com/IvanLuT29/DevOps_Task.git
+                  ]
+            ],
+      ])
+    
+            
+        
 
     stage('Terraform Apply') {
       environment {
@@ -33,4 +48,5 @@ pipeline {
       sh 'rm -rf .terraform terraform.tfstate*'
     }
   }
+}
 }
