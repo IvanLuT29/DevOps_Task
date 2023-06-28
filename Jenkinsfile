@@ -3,30 +3,30 @@ pipeline {
 
   stages {
     stage('Checkout') {
-      checkout([
-            $class: 'GitSCM',
-            branches: [[name: 'main']],
-            extensions: [
-                  [
-                        $class: 'CloneOption',
-                        depth: 50,
-                        noTags: true,
-                        shallow: true
-                  ]
-            ],
-            userRemoteConfigs: [
-                  [
-                        url: https://github.com/IvanLuT29/DevOps_Task.git
-                  ]
-            ],
-      ])
-    
-            
-        
+      steps {
+        checkout([
+          $class: 'GitSCM',
+          branches: [[name: 'main']],
+          extensions: [
+            [
+              $class: 'CloneOption',
+              depth: 50,
+              noTags: true,
+              shallow: true
+            ]
+          ],
+          userRemoteConfigs: [
+            [
+              url: 'https://github.com/IvanLuT29/DevOps_Task.git'
+            ]
+          ]
+        ])
+      }
+    }
 
     stage('Terraform Apply') {
       environment {
-        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID ')
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
       }
       steps {
@@ -48,5 +48,4 @@ pipeline {
       sh 'rm -rf .terraform terraform.tfstate*'
     }
   }
-}
 }
