@@ -1,6 +1,6 @@
 provider "aws" {
-  access_key = "Access Key"
-  secret_key = "Secret_key"
+  access_key = "AWS_ACCESS_KEY_ID"
+  secret_key = "AWS_SECRET_ACCESS_KEY"
   region = "eu-central-1"  
 }
 
