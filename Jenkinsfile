@@ -43,7 +43,8 @@ pipeline {
     stage('Deploy Website') {
       steps {
         dir('scripts') {
-        sh './scripts/deploy.sh'
+          sh './scripts/deploy.sh'
+        }
       }
     }
   }
@@ -54,5 +55,4 @@ pipeline {
       sh 'rm -rf .terraform terraform.tfstate*'
     }
   }
-}
 }
