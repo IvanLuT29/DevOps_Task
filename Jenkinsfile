@@ -42,6 +42,7 @@ pipeline {
     
     stage('Deploy Website') {
       steps {
+        dir('scripts') {
         sh './scripts/deploy.sh'
       }
     }
